@@ -1,0 +1,148 @@
+.header {
+  background-color: black;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header_cart__container {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+@media (min-width: 1280px) {
+  .header_cart__container {
+    margin-left: 20px;
+  }
+}
+.header_menu__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 20px;
+}
+@media (min-width: 1280px) {
+  .header_menu__container {
+    display: none;
+  }
+}
+.header_menu_highResolution {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .header_menu_highResolution {
+    display: block;
+    padding: 25px;
+  }
+  .header_menu__button:hover {
+    background-color: transparent;
+    border: solid 2px white;
+  }
+}
+.header_menu__logged {
+  display: none;
+}
+@media (min-width: 1280px) {
+  .header_menu__logged {
+    display: block;
+    padding: 10px;
+  }
+}
+.logged_email {
+  color: white;
+  margin: 0;
+}
+.logged_logout {
+  color: var(--pink);
+  margin: 0;
+}
+
+.footer {
+  background-color: black;
+  height: 600px;
+}
+@media (min-width: 1280px) {
+  .footer {
+    height: 400px;
+  }
+}
+.page_navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.page_links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+  color: white;
+  list-style: none;
+}
+.page_item {
+}
+.page_link {
+}
+
+.media_nav_container {
+}
+@media (min-width: 1280px) {
+  .media_nav_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px;
+  }
+}
+
+.social_media_link__container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.social_media__title {
+  margin-left: 10px;
+  padding: 10px;
+}
+.social_media__link {
+  color: white;
+  margin-top: 15px;
+}
+.tweeter_icon {
+  margin-top: 20px;
+}
+.footer_copyright {
+  margin-top: 50px;
+  padding: 10px;
+}
+@media (min-width: 1280px) {
+  .footer_copyright {
+    margin-left: 35px;
+  }
+}
+.container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+}
+.window {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  font-size: 25px;
+  margin-top: 100px;
+}
+.window_link {
+  color: white;
+}
+.bottom_text_logout {
+  text-align: center;
+}

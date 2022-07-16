@@ -1,0 +1,26 @@
+.home_container {
+  /* height: 100vh; */
+}
+.title {
+  text-align: center;
+  width: 280px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.form {
+  margin-top: 30px;
+}
+.home_featured__products {
+  background-color: var(--pink);
+  height: 100vh;
+  margin-top: 150px;
+}
+@media (min-width: 1280px) {
+  .home_featured__products {
+    background-color: var(--cyan);
+  }
+}
+.subtitle {
+  padding: 40px;
+  text-align: center;
+}
