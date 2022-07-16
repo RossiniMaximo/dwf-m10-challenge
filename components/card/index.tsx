@@ -1,5 +1,6 @@
 import { MainLargeText, BoldLargeText } from "ui/text";
 import styles from "./card.module.css";
+import Image from "next/image";
 
 type CardProps = {
   src: string;
@@ -12,7 +13,7 @@ export function Card(props: CardProps) {
   return (
     <div onClick={props.onClick} className={styles.main_container}>
       <div className={styles.img_container}>
-        <img className={styles.img} src={props.src} alt={props.title} />
+        <Image className={styles.img} src={props.src} alt={props.title} />
       </div>
       <div className={styles.text_container}>
         <MainLargeText text={props.title} />
