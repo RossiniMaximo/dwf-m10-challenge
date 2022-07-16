@@ -56,6 +56,7 @@ export default function Search() {
                 src={p.fields.Images.map((i) => {
                   return i.url;
                 })}
+                key={p.objectID}
                 title={p.fields.Name}
                 price={p.fields["Unit cost"]}
               />

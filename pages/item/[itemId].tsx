@@ -4,6 +4,7 @@ import { MainSubtitle, MediumLargeText } from "ui/text";
 import { PurchaseButton } from "ui/button";
 import styles from "./item.module.css";
 import { useProductData } from "lib/hooks";
+import Image from "next/image";
 
 export default function Item() {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function Item() {
     <Layout>
       <div className={styles.container}>
         <div className={styles.img_container}>
-          <img
+          <Image
             className={styles.img}
             src={product?.result.fields.Images.map((i) => {
               return i.url;

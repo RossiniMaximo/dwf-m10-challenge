@@ -4,9 +4,6 @@ import { MainTitle, MainSubtitle } from "ui/text";
 import { HomePageSearchForm } from "components/searchForms";
 
 export default function Home() {
-  function search(query: string) {
-    return "";
-  }
   return (
     <Layout>
       <div className={styles.home_container}>
