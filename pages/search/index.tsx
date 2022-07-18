@@ -6,10 +6,6 @@ import { getSearchProducts } from "api";
 import { Card } from "components/card";
 import { MediumLargeText } from "ui/text";
 
-// SI CAMBIA EL OFFSET AL TOCAR VER MAS PERO NO LLAMA MAS DE UNA VEZ CREO QUE ES PORQUE
-// ESO SE DECLARA AL EJECUTARSE EN JAVASCRIPT Y SOLO HACE UNA CUENTA Y LUEGO NO VUELVE A HACER MAS SUMAS
-// QUE LA PRIMERA , EFECTIVAMENTE!! YA ANDA CHAVAL!
-
 export default function Search() {
   const [products, setProducts] = useState([] as any);
   const [productsAmount, setProductsAmount] = useState(0);
