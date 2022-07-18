@@ -1,3 +1,6 @@
+const BASE_URL = "https://dwf-m9-challenge.vercel.app/api";
+const DEV_URL = "http://localhost:3001/api";
+
 import { TypeUserData } from "custom";
 
 export async function fetchAPI(input: RequestInfo, init: any) {
@@ -10,7 +13,7 @@ export async function fetchAPI(input: RequestInfo, init: any) {
   if (newOptions.body) {
     newOptions.body = JSON.stringify(newOptions.body);
   }
-  const res = await fetch(process.env.BASE_URL || "" + input, newOptions);
+  const res = await fetch(BASE_URL + input, newOptions);
   if (res.status >= 200 && res.status < 300) {
     const json = await res.json();
     return json;

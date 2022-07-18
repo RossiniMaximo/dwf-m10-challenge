@@ -15,6 +15,7 @@ export default function Home() {
           <MainSubtitle
             text="Productos Destacados"
             className={styles.subtitle}
+            color="white"
           />
         </div>
       </div>
