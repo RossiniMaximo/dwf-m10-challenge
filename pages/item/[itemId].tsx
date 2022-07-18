@@ -18,7 +18,7 @@ export default function Item() {
         <div className={styles.container}>
           <div className={styles.img_container}>
             <Image
-              alt={product?.result.field.Name}
+              alt={product?.result.fields.Name}
               layout="fill"
               className={styles.img}
               src={product?.result.fields.Images[0].url}
