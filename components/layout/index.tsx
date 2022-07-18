@@ -143,7 +143,7 @@ export function Layout({ children }: any) {
               <li className={styles.page_item}>
                 <p
                   onClick={removeUserCredentials}
-                  style={{ fontSize: 15, margin: 0 }}
+                  style={{ fontSize: 15, margin: 0, cursor: "pointer" }}
                 >
                   Logout
                 </p>

@@ -36,12 +36,7 @@ function Subtitle({ text, className, color }: TextType) {
 
 export const MainSubtitle = styled(Subtitle)`
   font-size: 32px;
-  color: white;
   margin: 0;
-
-  @media (min-width: 1280px) {
-    color: black;
-  }
 `;
 
 function LargeText({ text, className, color, cursor }: TextType) {

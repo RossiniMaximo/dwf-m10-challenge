@@ -1,12 +1,10 @@
 .container {
   padding: 20px;
-  height: 100vh;
-}
-@media (min-width: 1280px) {
-  .container {
-    display: flex;
-    justify-content: space-evenly;
-  }
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
 }
 
 .product_title_container {
@@ -14,17 +12,16 @@
 }
 
 .form {
-  margin-top: 85px;
   border: solid 2px;
   border-radius: 15px;
   padding: 10px;
   font-weight: bold;
-  background-color: #fafafa;
+  background-color: black;
   max-width: 400px;
+  color: white;
 }
 @media (min-width: 1280px) {
   .form {
-    margin-top: 80px;
   }
 }
 

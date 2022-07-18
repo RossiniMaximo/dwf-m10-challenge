@@ -13,7 +13,12 @@ export function Card(props: CardProps) {
   return (
     <div onClick={props.onClick} className={styles.main_container}>
       <div className={styles.img_container}>
-        <Image className={styles.img} src={props.src} alt={props.title} />
+        <Image
+          className={styles.img}
+          alt={props.title}
+          src={props.src[0]}
+          layout="fill"
+        />
       </div>
       <div className={styles.text_container}>
         <MainLargeText text={props.title} />

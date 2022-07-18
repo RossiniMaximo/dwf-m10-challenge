@@ -10,18 +10,21 @@ export default function Item() {
   const router = useRouter();
   const query = router.query.itemId as string;
   const product = useProductData(query);
+  console.log(product?.result.fields.Images[0].url);
 
   return (
     <Layout>
       <div className={styles.container}>
         <div className={styles.img_container}>
-          <Image
-            alt={product.result.fields.Name}
-            className={styles.img}
-            src={product?.result.fields.Images.map((i) => {
-              return i.url;
-            })}
-          />
+          {product ? (
+            <Image
+              layout="fill"
+              className={styles.img}
+              src={product?.result.fields.Images[0].url}
+            />
+          ) : (
+            ""
+          )}
         </div>
         <div className={styles.product_data_container}>
           <div className={styles.text_container}>
