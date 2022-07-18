@@ -14,45 +14,45 @@ export default function Item() {
 
   return (
     <Layout>
-      <div className={styles.container}>
-        <div className={styles.img_container}>
-          {product ? (
+      {product ? (
+        <div className={styles.container}>
+          <div className={styles.img_container}>
             <Image
               alt={product.result.field.Name}
               layout="fill"
               className={styles.img}
               src={product?.result.fields.Images[0].url}
             />
-          ) : (
-            ""
-          )}
-        </div>
-        <div className={styles.product_data_container}>
-          <div className={styles.text_container}>
-            <MainSubtitle text={product?.result.fields.Name} color="black" />
-            <MainSubtitle
-              color="black"
-              text={
-                product?.result.fields
-                  ? "$" + product.result.fields["Unit cost"]
-                  : ""
-              }
-            />
           </div>
-          <div
-            className={styles.button_container}
-            onClick={() => router.push("/checkout/" + query)}
-          >
-            <PurchaseButton text="Comprar" color="black" />
-          </div>
-          <div className={styles.large_text__container}>
-            <MediumLargeText
-              text={product?.result.fields.Description}
-              color="black"
-            />
+          <div className={styles.product_data_container}>
+            <div className={styles.text_container}>
+              <MainSubtitle text={product?.result.fields.Name} color="black" />
+              <MainSubtitle
+                color="black"
+                text={
+                  product?.result.fields
+                    ? "$" + product.result.fields["Unit cost"]
+                    : ""
+                }
+              />
+            </div>
+            <div
+              className={styles.button_container}
+              onClick={() => router.push("/checkout/" + query)}
+            >
+              <PurchaseButton text="Comprar" color="black" />
+            </div>
+            <div className={styles.large_text__container}>
+              <MediumLargeText
+                text={product?.result.fields.Description}
+                color="black"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </Layout>
   );
 }
