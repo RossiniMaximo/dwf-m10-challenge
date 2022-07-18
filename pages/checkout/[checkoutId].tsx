@@ -23,6 +23,9 @@ export default function CheckOut() {
     const colour = e.target.colours.value;
     const address = e.target.address.value;
     const order = await createOrder(productId, { colour, address });
+    console.log(order);
+
+    router.push(order.URL);
   }
 
   return (

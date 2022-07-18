@@ -15,7 +15,7 @@ export default function Profile() {
   useEffect(() => {
     const userData = getStoragedUser();
     setUser(userData);
-  });
+  }, []);
   async function handleSubmit(e) {
     e.preventDefault();
     const address = e.target.shipment_address.value;
