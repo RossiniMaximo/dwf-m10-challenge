@@ -46,7 +46,11 @@ export default function CheckOut() {
             <MainLargeText text="Color:" />
             <select className={styles.dropdown} name="colours">
               {product?.result.fields.Color.map((color) => {
-                return <option value={color}>{color}</option>;
+                return (
+                  <option value={color} key={product.result.fields.Name}>
+                    {color}
+                  </option>
+                );
               })}
             </select>
           </div>

@@ -19,6 +19,7 @@ export default function Search() {
   const query = router.query.q as string;
   const limit = router.query.limit as string;
   const offset = Number(router.query.offset);
+
   async function pullProducts() {
     const results = await getSearchProducts(query, limit, offset);
     setStateOffset(offset + 1);
@@ -27,8 +28,6 @@ export default function Search() {
   }
   async function pullNewProductsPage() {
     const results = await getSearchProducts(query, limit, stateOffset);
-    console.log("results pullnewProductsPage", results.results.length);
-
     setStateOffset(stateOffset + 1);
     setProductsAmount(results.pagination.totalResults);
     setProducts(results.results);
@@ -50,13 +49,13 @@ export default function Search() {
           {products?.map((p) => {
             return (
               <Card
+                key={p.objectID}
                 onClick={() => {
                   return router.push("/item/" + p.objectID);
                 }}
                 src={p.fields.Images.map((i) => {
                   return i.url;
                 })}
-                key={p.objectID}
                 title={p.fields.Name}
                 price={p.fields["Unit cost"]}
               />

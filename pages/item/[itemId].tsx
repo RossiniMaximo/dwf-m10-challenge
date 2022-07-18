@@ -18,6 +18,7 @@ export default function Item() {
         <div className={styles.img_container}>
           {product ? (
             <Image
+              alt={product.result.field.Name}
               layout="fill"
               className={styles.img}
               src={product?.result.fields.Images[0].url}
