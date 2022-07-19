@@ -38,6 +38,7 @@ export default function Home() {
               const fields = product.result.fields;
               return (
                 <Card
+                  key={product.result.objectID}
                   title={fields.Name}
                   price={fields["Unit cost"]}
                   src={fields.Images.map((i) => i.url)}
