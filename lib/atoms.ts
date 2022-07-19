@@ -1,6 +1,6 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export const userAddress = atom({
-  key: "userAddres",
+  key: "userAddress",
   default: "",
 });

@@ -62,3 +62,23 @@ export async function setUserAddressAndPhoneNumber(
   });
   return res;
 }
+
+export async function setUserFavourites(productId: string) {
+  const res = await fetchAPI("/user/favourites", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: { productId },
+  });
+  return res;
+}
+
+export async function getUserFavourites(data) {
+  const getProducts = data?.result.map(async (id) => {
+    const res = await fetchAPI("/products?productId=" + id, {});
+    return res;
+  });
+  if (getProducts) {
+    const results = await Promise.all(getProducts);
+    return results;
+  }
+}

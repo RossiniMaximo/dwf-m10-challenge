@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { Layout } from "components/layout";
 import styles from "./search.module.css";
 import { useEffect, useState } from "react";
-import { getSearchProducts } from "api";
+import { getSearchProducts, setUserFavourites } from "api";
 import { Card } from "components/card";
 import { MediumLargeText } from "ui/text";
 
@@ -46,7 +46,8 @@ export default function Search() {
             return (
               <Card
                 key={p.objectID}
-                onClick={() => {
+                onClick={async () => {
+                  await setUserFavourites(p.objectID);
                   return router.push("/item/" + p.objectID);
                 }}
                 src={p.fields.Images.map((i) => {

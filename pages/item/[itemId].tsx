@@ -10,8 +10,6 @@ export default function Item() {
   const router = useRouter();
   const query = router.query.itemId as string;
   const product = useProductData(query);
-  console.log(product?.result.fields.Images[0].url);
-
   return (
     <Layout>
       {product ? (

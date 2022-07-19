@@ -1,4 +1,4 @@
-import { MainLargeText, BoldLargeText } from "ui/text";
+import { BoldLargeText } from "ui/text";
 import styles from "./card.module.css";
 import Image from "next/image";
 
@@ -21,7 +21,7 @@ export function Card(props: CardProps) {
         />
       </div>
       <div className={styles.text_container}>
-        <MainLargeText text={props.title} />
+        <BoldLargeText text={props.title} />
         <BoldLargeText text={"$" + props.price} />
       </div>
     </div>

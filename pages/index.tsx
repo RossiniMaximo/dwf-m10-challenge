@@ -2,8 +2,24 @@ import styles from "./home.module.css";
 import { Layout } from "components/layout";
 import { MainTitle, MainSubtitle } from "ui/text";
 import { HomePageSearchForm } from "components/searchForms";
+import { useUserFavourites } from "lib/hooks";
+import { getUserFavourites } from "api";
+import { useEffect, useState } from "react";
+import { Card } from "components/card";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
+  const [products, setProducts] = useState() as any;
+  const favourites = useUserFavourites();
+  async function pullFavourites() {
+    const results = (await getUserFavourites(favourites)) as [{}];
+    setProducts(results);
+  }
+  useEffect(() => {
+    pullFavourites();
+  }, [favourites]);
+
   return (
     <Layout>
       <div className={styles.home_container}>
@@ -17,6 +33,21 @@ export default function Home() {
             className={styles.subtitle}
             color="white"
           />
+          <div className={styles.cards_container}>
+            {products?.map((product) => {
+              const fields = product.result.fields;
+              return (
+                <Card
+                  title={fields.Name}
+                  price={fields["Unit cost"]}
+                  src={fields.Images.map((i) => i.url)}
+                  onClick={() => {
+                    return router.push("/item/" + product.result.objectID);
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </Layout>
