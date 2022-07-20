@@ -8,6 +8,7 @@ import { sendEmail, sendCode } from "api";
 import { useRouter } from "next/router";
 import { setStoragedUser } from "lib";
 import { TypeUserData } from "custom";
+import Head from "next/head";
 
 export default function SignIn() {
   const [userData, setUserData] = useState({} as TypeUserData);
@@ -33,6 +34,9 @@ export default function SignIn() {
   return (
     <Layout>
       <div className={styles.container}>
+        <Head>
+          <title>Sign In</title>
+        </Head>
         <MainSubtitle text="Ingresar" color="black" className={styles.title} />
         <form
           style={{ display: userData.email ? "none" : "" }}

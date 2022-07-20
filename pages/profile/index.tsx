@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { TypeUserData } from "custom";
 import { setUserAddressAndPhoneNumber } from "api";
 import { useUserAddressState } from "lib/hooks";
+import Head from "next/head";
 export default function Profile() {
   const [user, setUser] = useState({} as TypeUserData);
   const [updated, setUpdated] = useState(false);
@@ -30,6 +31,9 @@ export default function Profile() {
   return (
     <Layout>
       <div className={styles.main_container}>
+        <Head>
+          <title>Profile</title>
+        </Head>
         <div className={styles.title_container}>
           <MainSubtitle text="Perfil" color="black" />
         </div>

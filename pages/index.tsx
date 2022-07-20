@@ -7,6 +7,7 @@ import { getUserFavourites } from "api";
 import { useEffect, useState } from "react";
 import { Card } from "components/card";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
@@ -23,6 +24,9 @@ export default function Home() {
   return (
     <Layout>
       <div className={styles.home_container}>
+        <Head>
+          <title>Home</title>
+        </Head>
         <MainTitle text="Mi primer e-commerce" className={styles.title} />
         <div className={styles.form}>
           <HomePageSearchForm />

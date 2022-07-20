@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getStoragedUser } from "lib";
 import styles from "./checkout.module.css";
 import { Layout } from "components/layout";
+import Head from "next/head";
 
 export default function CheckOut() {
   const router = useRouter();
@@ -28,6 +29,9 @@ export default function CheckOut() {
 
   return (
     <Layout>
+      <Head>
+        <title>Checkout</title>
+      </Head>
       <div className={styles.container}>
         <MainSubtitle text="Concreta tu orden de compra" color="black" />
         <form onSubmit={handleSubmit} className={styles.form}>

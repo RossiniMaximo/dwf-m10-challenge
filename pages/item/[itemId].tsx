@@ -5,6 +5,7 @@ import { PurchaseButton } from "ui/button";
 import styles from "./item.module.css";
 import { useProductData } from "lib/hooks";
 import Image from "next/image";
+import Head from "next/head";
 
 export default function Item() {
   const router = useRouter();
@@ -14,6 +15,9 @@ export default function Item() {
     <Layout>
       {product ? (
         <div className={styles.container}>
+          <Head>
+            <title>{product.result.fields.Name}</title>
+          </Head>
           <div className={styles.img_container}>
             <Image
               alt={product?.result.fields.Name}

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getSearchProducts, setUserFavourites } from "api";
 import { Card } from "components/card";
 import { MediumLargeText } from "ui/text";
+import Head from "next/head";
 
 export default function Search() {
   const [products, setProducts] = useState([] as any);
@@ -36,6 +37,9 @@ export default function Search() {
   return (
     <Layout>
       <div className={styles.result_amount}>
+        <Head>
+          <title>Search</title>
+        </Head>
         <MediumLargeText
           text={products.length + "resultados de " + productsAmount}
         />
