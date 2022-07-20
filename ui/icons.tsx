@@ -1,5 +1,5 @@
 import { VscMenu } from "react-icons/vsc";
 import { TiShoppingCart } from "react-icons/ti";
-import { FaTwitter } from "react-icons/fa";
+import { AiFillLinkedin } from "react-icons/ai";
 import { TiSocialInstagram } from "react-icons/ti";
-export { VscMenu, TiShoppingCart, FaTwitter, TiSocialInstagram };
+export { VscMenu, TiShoppingCart, AiFillLinkedin, TiSocialInstagram };

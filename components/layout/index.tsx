@@ -5,7 +5,7 @@ import Link from "next/link";
 import {
   TiShoppingCart,
   VscMenu,
-  FaTwitter,
+  AiFillLinkedin,
   TiSocialInstagram,
 } from "ui/icons";
 import { useEffect, useState } from "react";
@@ -158,12 +158,15 @@ export function Layout({ children }: any) {
               color="white"
             />
             <div className={styles.social_media_link__container}>
-              <FaTwitter
+              <AiFillLinkedin
                 size="20"
                 color="white"
                 className={styles.tweeter_icon}
               />
-              <Link href="/" passHref>
+              <Link
+                href="https://www.linkedin.com/in/maximo-rossini-410225214"
+                passHref
+              >
                 <a className={styles.social_media__link}>My E-commerce</a>
               </Link>
             </div>
@@ -173,7 +176,10 @@ export function Layout({ children }: any) {
                 color="white"
                 className={styles.tweeter_icon}
               />
-              <Link href="https://www.instagram.com/?hl=es" passHref>
+              <Link
+                href="https://www.instagram.com/maximor0ssini/?hl=es"
+                passHref
+              >
                 <a className={styles.social_media__link}>My E-commerce</a>
               </Link>
             </div>
