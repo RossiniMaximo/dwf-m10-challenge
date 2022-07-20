@@ -8,17 +8,21 @@ import { useEffect, useState } from "react";
 import { Card } from "components/card";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { getStoragedUser } from "lib";
 
 export default function Home() {
   const router = useRouter();
   const [products, setProducts] = useState() as any;
   const favourites = useUserFavourites();
+  async function pullFavourites() {
+    const results = (await getUserFavourites(favourites)) as [{}];
+    setProducts(results);
+  }
   useEffect(() => {
-    async function pullFavourites() {
-      const results = (await getUserFavourites(favourites)) as [{}];
-      setProducts(results);
+    const user = getStoragedUser();
+    if (user.email && user.fullname) {
+      pullFavourites();
     }
-    pullFavourites();
   }, [favourites]);
 
   return (
