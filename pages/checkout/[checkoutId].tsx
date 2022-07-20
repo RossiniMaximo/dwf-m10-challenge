@@ -16,9 +16,7 @@ export default function CheckOut() {
   const [userAddress, setUserAddress] = useUserAddressState();
   useEffect(() => {
     const user = getStoragedUser();
-    if (user) {
-      setUserAddress(user.shipment_address);
-    }
+    setUserAddress(user.shipment_address);
   }, []);
   async function handleSubmit(e) {
     e.preventDefault();
