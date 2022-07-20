@@ -7,6 +7,7 @@ const nextConfig = {
   images: {
     domains: ["dl.airtable.com"],
   },
+  swcMinify: false,
 };
 
 module.exports = nextConfig;
