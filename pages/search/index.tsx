@@ -47,20 +47,23 @@ export default function Search() {
       <div className={styles.main_container}>
         <div className={styles.container}>
           {products?.map((p) => {
-            return (
-              <Card
-                key={p.objectID}
-                onClick={async () => {
-                  await setUserFavourites(p.objectID);
-                  return router.push("/item/" + p.objectID);
-                }}
-                src={p.fields.Images.map((i) => {
-                  return i.url;
-                })}
-                title={p.fields.Name}
-                price={p.fields["Unit cost"]}
-              />
-            );
+            const img = p.fields.Images?.map((i) => {
+              return i.url;
+            });
+            if (img != undefined && img != "undefined") {
+              return (
+                <Card
+                  key={p.objectID}
+                  onClick={async () => {
+                    await setUserFavourites(p.objectID);
+                    return router.push("/item/" + p.objectID);
+                  }}
+                  src={img}
+                  title={p.fields.Name}
+                  price={p.fields["Unit cost"]}
+                />
+              );
+            }
           })}
         </div>
         <p

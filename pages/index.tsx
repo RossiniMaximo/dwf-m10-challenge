@@ -1,26 +1,27 @@
 import styles from "./home.module.css";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { Layout } from "components/layout";
 import { MainTitle, MainSubtitle } from "ui/text";
 import { HomePageSearchForm } from "components/searchForms";
-import { useUserFavourites } from "lib/hooks";
-import { getUserFavourites } from "api";
-import { useEffect, useState } from "react";
+import { getFavourites, getUserFavourites } from "api";
 import { Card } from "components/card";
-import { useRouter } from "next/router";
-import Head from "next/head";
 
 export default function Home() {
   const router = useRouter();
   const [products, setProducts] = useState() as any;
-  async function pullFavourites(favourites) {
-    const results = (await getUserFavourites(favourites)) as [{}];
-    setProducts(results);
+  async function pullFavourites() {
+    const favourites = await getFavourites();
+    const results = await getUserFavourites(favourites);
+    if (results) {
+      setProducts(results);
+    }
   }
-  const favourites = useUserFavourites();
 
   useEffect(() => {
-    pullFavourites(favourites);
-  }, [favourites]);
+    pullFavourites();
+  }, []);
 
   return (
     <Layout>

@@ -73,15 +73,29 @@ export async function setUserFavourites(productId: string) {
 }
 
 export async function getUserFavourites(data) {
-  const token = getStoragedToken();
-  if (token) {
+  if (data?.result.length >= 1) {
     const getProducts = data?.result?.map(async (id) => {
       const res = await fetchAPI("/products?productId=" + id, {});
       return res;
     });
+
     const results = await Promise.all(getProducts);
     return results;
   } else {
-    return "";
+    return false;
+  }
+}
+
+export async function getFavourites() {
+  const token = localStorage.getItem("auth_token");
+  if (token != "null") {
+    const res = await fetch("http://localhost:8080/api/user/favourites", {
+      method: "GET",
+      headers: {
+        Authorization: "bearer" + " " + token,
+      },
+    });
+    const json = await res.json();
+    return json;
   }
 }
