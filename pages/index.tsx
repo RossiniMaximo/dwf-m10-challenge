@@ -13,11 +13,11 @@ export default function Home() {
   const router = useRouter();
   const [products, setProducts] = useState() as any;
   const favourites = useUserFavourites();
-  async function pullFavourites() {
-    const results = (await getUserFavourites(favourites)) as [{}];
-    setProducts(results);
-  }
   useEffect(() => {
+    async function pullFavourites() {
+      const results = (await getUserFavourites(favourites)) as [{}];
+      setProducts(results);
+    }
     pullFavourites();
   }, [favourites]);
 
