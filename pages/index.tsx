@@ -19,12 +19,12 @@ export default function Home() {
   }
   try {
     const token = getStoragedToken();
-    if (token != "null") {
-      const favourites = useUserFavourites();
-      useEffect(() => {
+    useEffect(() => {
+      if (token != "null") {
+        const favourites = useUserFavourites();
         pullFavourites(favourites);
-      }, [favourites]);
-    }
+      }
+    }, []);
   } catch (e) {
     console.error("error :", e);
   }
