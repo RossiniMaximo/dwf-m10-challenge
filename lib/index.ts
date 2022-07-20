@@ -13,7 +13,7 @@ export async function fetchAPI(input: RequestInfo, init: any) {
   if (newOptions.body) {
     newOptions.body = JSON.stringify(newOptions.body);
   }
-  const res = await fetch(BASE_URL + input, newOptions);
+  const res = await fetch(process.env.BASE_URL + input, newOptions);
   if (res.status >= 200 && res.status < 300) {
     const json = await res.json();
     return json;
@@ -38,6 +38,7 @@ export function setStoragedUser(userData: TypeUserData) {
       fullname: userData.fullname,
       shipment_address: userData.shipment_address,
       phone: userData.phone,
+      logged: userData.logged,
     })
   );
 }
@@ -53,6 +54,7 @@ export function LogOut() {
   user.email = "";
   user.fullname = "";
   user.shipment_address = "";
+  user.logged = false;
   setStoragedUser(user);
   setStoragedToken("null");
 }

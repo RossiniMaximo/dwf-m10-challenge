@@ -3,4 +3,5 @@ export type TypeUserData = {
   fullname: string;
   shipment_address?: string;
   phone?: string;
+  logged?: boolean;
 };

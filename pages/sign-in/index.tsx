@@ -19,7 +19,12 @@ export default function SignIn() {
     const email = e.target.email.value;
     const fullname = e.target.fullname.value;
     setUserData({ ...userData, email, fullname });
-    setStoragedUser({ email, fullname, shipment_address: "" });
+    setStoragedUser({
+      email,
+      fullname,
+      shipment_address: "",
+      phone: "",
+    });
     await sendEmail(email, fullname);
   }
 
@@ -28,6 +33,7 @@ export default function SignIn() {
     const code = Number(e.target.code.value);
     const res = await sendCode(userData.email, code);
     if (res) {
+      setStoragedUser({ ...userData, logged: true });
       router.push("/");
     }
   }

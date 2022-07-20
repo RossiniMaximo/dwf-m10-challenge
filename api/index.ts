@@ -73,7 +73,7 @@ export async function setUserFavourites(productId: string) {
 }
 
 export async function getUserFavourites(data) {
-  const getProducts = data?.result.map(async (id) => {
+  const getProducts = data?.result?.map(async (id) => {
     const res = await fetchAPI("/products?productId=" + id, {});
     return res;
   });

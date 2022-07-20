@@ -1,4 +1,4 @@
-import { fetchAPI } from "lib";
+import { fetchAPI, getStoragedUser } from "lib";
 import useSWR from "swr";
 import { userAddress } from "./atoms";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
@@ -18,9 +18,10 @@ export function useProductData(productId) {
 }
 
 export function useUserFavourites() {
-  const { data, error } = useSWR("/user/favourites", fetchAPI);
-  if (error) {
-    throw "error" + " " + error;
+  try {
+    const { data, error } = useSWR("/user/favourites", fetchAPI);
+    return data;
+  } catch (error) {
+    throw "error : " + error;
   }
-  return data;
 }
