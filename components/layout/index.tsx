@@ -167,7 +167,7 @@ export function Layout({ children }: any) {
                 href="https://www.linkedin.com/in/maximo-rossini-410225214"
                 passHref
               >
-                <a className={styles.social_media__link}>My E-commerce</a>
+                <a className={styles.social_media__link}>LinkedIn</a>
               </Link>
             </div>
             <div className={styles.social_media_link__container}>
@@ -180,7 +180,7 @@ export function Layout({ children }: any) {
                 href="https://www.instagram.com/maximor0ssini/?hl=es"
                 passHref
               >
-                <a className={styles.social_media__link}>My E-commerce</a>
+                <a className={styles.social_media__link}>Instagram</a>
               </Link>
             </div>
           </nav>

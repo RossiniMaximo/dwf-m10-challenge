@@ -1,4 +1,4 @@
-import { fetchAPI, setStoragedToken } from "lib";
+import { fetchAPI, getStoragedToken, setStoragedToken } from "lib";
 
 export async function sendEmail(email: string, fullname: string) {
   const res = await fetchAPI("/auth", {
@@ -73,12 +73,15 @@ export async function setUserFavourites(productId: string) {
 }
 
 export async function getUserFavourites(data) {
-  const getProducts = data?.result?.map(async (id) => {
-    const res = await fetchAPI("/products?productId=" + id, {});
-    return res;
-  });
-  if (getProducts) {
+  const token = getStoragedToken();
+  if (token) {
+    const getProducts = data?.result?.map(async (id) => {
+      const res = await fetchAPI("/products?productId=" + id, {});
+      return res;
+    });
     const results = await Promise.all(getProducts);
     return results;
+  } else {
+    return "";
   }
 }
