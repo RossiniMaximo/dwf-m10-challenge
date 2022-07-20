@@ -20,7 +20,12 @@ export function useProductData(productId) {
 export function useUserFavourites() {
   try {
     const { data, error } = useSWR("/user/favourites", fetchAPI);
-    return data;
+
+    if (error) {
+      return error;
+    } else {
+      return data;
+    }
   } catch (error) {
     throw "error : " + error;
   }

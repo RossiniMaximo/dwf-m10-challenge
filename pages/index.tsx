@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Card } from "components/card";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import { getStoragedToken } from "lib";
 
 export default function Home() {
   const router = useRouter();
@@ -16,11 +17,17 @@ export default function Home() {
     const results = (await getUserFavourites(favourites)) as [{}];
     setProducts(results);
   }
-  const favourites = useUserFavourites();
-
-  useEffect(() => {
-    pullFavourites(favourites);
-  }, [favourites]);
+  try {
+    const token = getStoragedToken();
+    if (token != "null") {
+      const favourites = useUserFavourites();
+      useEffect(() => {
+        pullFavourites(favourites);
+      }, [favourites]);
+    }
+  } catch (e) {
+    console.error("error :", e);
+  }
 
   return (
     <Layout>
