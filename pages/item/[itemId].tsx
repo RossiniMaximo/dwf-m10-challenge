@@ -6,10 +6,13 @@ import styles from "./item.module.css";
 import { useProductData } from "lib/hooks";
 import Image from "next/image";
 import Head from "next/head";
+import { isUserLogged } from "lib";
 
 export default function Item() {
   const router = useRouter();
   const query = router.query.itemId as string;
+  router.pathname = "/item/" + query;
+
   const product = useProductData(query);
   return (
     <Layout>
@@ -40,7 +43,16 @@ export default function Item() {
             </div>
             <div
               className={styles.button_container}
-              onClick={() => router.push("/checkout/" + query)}
+              onClick={() => {
+                const logged = isUserLogged();
+                if (logged) {
+                  router.push("/checkout/" + query);
+                } else {
+                  window.alert(
+                    "Debes iniciar sesión para poder comprar productos"
+                  );
+                }
+              }}
             >
               <PurchaseButton text="Comprar" color="black" />
             </div>

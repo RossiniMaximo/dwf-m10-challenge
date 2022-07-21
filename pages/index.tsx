@@ -7,10 +7,12 @@ import { MainTitle, MainSubtitle } from "ui/text";
 import { HomePageSearchForm } from "components/searchForms";
 import { getFavourites, getUserFavourites } from "api";
 import { Card } from "components/card";
+import { isUserLogged } from "lib";
 
 export default function Home() {
   const router = useRouter();
   const [products, setProducts] = useState() as any;
+  const [logged, setLogged] = useState(false);
   async function pullFavourites() {
     const favourites = await getFavourites();
     const results = await getUserFavourites(favourites);
@@ -21,7 +23,13 @@ export default function Home() {
 
   useEffect(() => {
     pullFavourites();
+    const logged = isUserLogged();
+    setLogged(logged);
   }, []);
+
+  const featuredProdStyle = {
+    display: logged ? "" : "none",
+  };
 
   return (
     <Layout>
@@ -33,7 +41,10 @@ export default function Home() {
         <div className={styles.form}>
           <HomePageSearchForm />
         </div>
-        <div className={styles.home_featured__products}>
+        <div
+          className={styles.home_featured__products}
+          style={featuredProdStyle}
+        >
           <MainSubtitle
             text="Productos Destacados"
             className={styles.subtitle}

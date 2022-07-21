@@ -49,6 +49,15 @@ export function getStoragedUser() {
   }
 }
 
+export function isUserLogged() {
+  try {
+    const user = getStoragedUser();
+    return user.logged;
+  } catch (error) {
+    return false;
+  }
+}
+
 export function LogOut() {
   const user = getStoragedUser();
   user.email = "";

@@ -55,8 +55,8 @@ export default function Search() {
                 <Card
                   key={p.objectID}
                   onClick={async () => {
-                    await setUserFavourites(p.objectID);
-                    return router.push("/item/" + p.objectID);
+                    setUserFavourites(p.objectID);
+                    router.push(`/item/${p.objectID}`);
                   }}
                   src={img}
                   title={p.fields.Name}
