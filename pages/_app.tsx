@@ -1,12 +1,18 @@
 import type { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
+import React, { useState } from "react";
 
+export const AddressContext = React.createContext({});
 function MyApp({ Component, pageProps }: AppProps) {
+  const [addy, setAddy] = useState();
   return (
-    <RecoilRoot>
+    <AddressContext.Provider
+      value={{
+        addy,
+        setAddy,
+      }}
+    >
       <Component {...pageProps} />
-    </RecoilRoot>
+    </AddressContext.Provider>
   );
 }
-
 export default MyApp;

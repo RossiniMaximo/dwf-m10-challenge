@@ -4,15 +4,17 @@ import { TextField } from "ui/textfield";
 import { ProfileButton } from "ui/button";
 import styles from "./profile.module.css";
 import { getStoragedUser, setStoragedUser } from "lib";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { TypeUserData } from "custom";
 import { setUserAddressAndPhoneNumber } from "api";
-import { useUserAddressState } from "lib/hooks";
 import Head from "next/head";
+import { AddressContext } from "pages/_app";
+
 export default function Profile() {
   const [user, setUser] = useState({} as TypeUserData);
   const [updated, setUpdated] = useState(false);
-  const [userAddress, setUserAddress] = useUserAddressState();
+  const { addy, setAddy } = useContext(AddressContext) as any;
+
   useEffect(() => {
     const userData = getStoragedUser();
     setUser(userData);
@@ -22,7 +24,9 @@ export default function Profile() {
     const address = e.target.shipment_address.value;
     const phoneNumber = e.target.phone_number.value;
     const res = await setUserAddressAndPhoneNumber(address, phoneNumber);
-    setUserAddress(address);
+    setAddy(address);
+    console.log("addyContext addy after set", addy);
+
     setStoragedUser({ ...user, shipment_address: address });
     if (res) {
       setUpdated(true);

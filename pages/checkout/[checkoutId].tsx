@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useProductData, useUserAddressState } from "lib/hooks";
+import { useProductData } from "lib/hooks";
 import { MainLargeText, MainSubtitle } from "ui/text";
 import { PurchaseInput } from "ui/textfield";
 import { MakeOrderButton } from "ui/button";
@@ -9,15 +9,17 @@ import { getStoragedUser } from "lib";
 import styles from "./checkout.module.css";
 import { Layout } from "components/layout";
 import Head from "next/head";
+import { useContext } from "react";
+import { AddressContext } from "pages/_app";
 
 export default function CheckOut() {
+  const { addy, setAddy } = useContext(AddressContext) as any;
   const router = useRouter();
   const productId = router.query.checkoutId as string;
   const product = useProductData(productId);
-  const [userAddress, setUserAddress] = useUserAddressState();
   useEffect(() => {
     const user = getStoragedUser();
-    setUserAddress(user.shipment_address);
+    setAddy(user.shipment_address);
   }, []);
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +67,7 @@ export default function CheckOut() {
             <p>Tamaño : {product?.result.fields["Size (WxLxH)"]}</p>
             <div className={styles.address_container}>
               <label>Dirección</label>
-              <PurchaseInput name="address" value={userAddress} />
+              <PurchaseInput name="address" value={addy} />
             </div>
           </div>
           <div className={styles.btn_container}>
