@@ -75,7 +75,7 @@ export function Layout({ children }: any) {
                 <div onClick={removeUserCredentials}>
                   <TinyLargeText
                     cursor="on"
-                    text={user.email ? "cerrar sesión" : ""}
+                    text={user?.email ? "cerrar sesión" : ""}
                     color="var(--pink)"
                   />
                 </div>
