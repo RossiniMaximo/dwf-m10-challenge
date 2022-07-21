@@ -89,13 +89,7 @@ export async function getUserFavourites(data) {
 export async function getFavourites() {
   const token = localStorage.getItem("auth_token");
   if (token != "null") {
-    const res = await fetch("http://localhost:8080/api/user/favourites", {
-      method: "GET",
-      headers: {
-        Authorization: "bearer" + " " + token,
-      },
-    });
-    const json = await res.json();
-    return json;
+    const res = await fetchAPI("/user/favourites", {});
+    return res;
   }
 }
