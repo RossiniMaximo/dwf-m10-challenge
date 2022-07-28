@@ -81,17 +81,15 @@ export async function getFavourites() {
 }
 
 export async function getIdsForPaths() {
-  const res = await fetch("http:localhost:8080/api/products/all", {
+  const res = await fetchAPI("/products/all", {
     method: "get",
   });
-  const json = await res.json();
-  return json;
+  return res;
 }
 export async function getProductData(itemId) {
-  const res = await fetch(
-    "http://localhost:8080/api/products?productId=" + itemId
-  );
-  const json = await res.json();
+  const res = await fetchAPI("/products?productId=" + itemId, {
+    method: "get",
+  });
 
-  return json.result.fields;
+  return res.result.fields;
 }
