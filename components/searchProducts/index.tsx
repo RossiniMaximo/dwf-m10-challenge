@@ -52,19 +52,23 @@ export function SearchProducts({ products, stateOffset, setStateOffset }) {
           >
             {"<"} volver
           </p>
-          <p
-            onClick={() => {
-              setStateOffset(stateOffset + 1);
-            }}
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              marginTop: 0,
-              cursor: "pointer",
-            }}
-          >
-            ver más {">"}
-          </p>
+          {products?.results.length === 1 ? (
+            ""
+          ) : (
+            <p
+              onClick={() => {
+                setStateOffset(stateOffset + 1);
+              }}
+              style={{
+                textAlign: "center",
+                fontSize: "20px",
+                marginTop: 0,
+                cursor: "pointer",
+              }}
+            >
+              ver más {">"}
+            </p>
+          )}
         </div>
       </div>
     </div>

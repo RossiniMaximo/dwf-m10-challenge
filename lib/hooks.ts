@@ -13,7 +13,7 @@ export function useProductData(productId) {
 }
 
 export function useProducts(query: string, limit: number, offset: number) {
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     "/products/search?query=" + query + "&limit=" + limit + "&offset=" + offset,
     fetchAPI
   );
