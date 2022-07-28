@@ -1,6 +1,6 @@
 import { fetchAPI, getStoragedToken, setStoragedToken } from "lib";
 
-export async function sendEmail(email: string, fullname: string) {
+export async function sendCodeByEmail(email: string, fullname: string) {
   const res = await fetchAPI("/auth", {
     method: "POST",
     headers: {
@@ -11,7 +11,7 @@ export async function sendEmail(email: string, fullname: string) {
   return res;
 }
 
-export async function sendCode(email: string, code: number) {
+export async function sendAuthCodeToVerify(email: string, code: number) {
   const res = await fetchAPI("/auth/token", {
     method: "POST",
     headers: {
@@ -81,15 +81,17 @@ export async function getFavourites() {
 }
 
 export async function getIdsForPaths() {
-  const res = await fetchAPI("/products/all", {
-    method: "get",
-  });
-  return res;
+  const res = await fetch(
+    "https://dwf-m9-challenge.vercel.app/api/products/all"
+  );
+  const json = await res.json();
+  return json;
 }
 export async function getProductData(itemId) {
-  const res = await fetchAPI("/products?productId=" + itemId, {
-    method: "get",
-  });
+  const res = await fetch(
+    "https://dwf-m9-challenge.vercel.app/api/products?productId=" + itemId
+  );
+  const json = await res.json();
 
-  return res.result.fields;
+  return json.result.fields;
 }
