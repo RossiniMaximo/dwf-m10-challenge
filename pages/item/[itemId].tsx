@@ -1,72 +1,44 @@
 import { useRouter } from "next/router";
-import { Layout } from "components/layout";
-import { MainSubtitle, MediumLargeText } from "ui/text";
-import { PurchaseButton } from "ui/button";
-import styles from "./item.module.css";
-import { useProductData } from "lib/hooks";
-import Image from "next/image";
 import Head from "next/head";
-import { isUserLogged } from "lib";
+import { Layout } from "components/layout";
+import { getIdsForPaths, getProductData } from "api";
+import { GetStaticPaths } from "next";
+import { ItemView } from "components/itemView";
 
-export default function Item() {
+export default function Item({ data }: any) {
   const router = useRouter();
   const query = router.query.itemId as string;
   router.pathname = "/item/" + query;
 
-  const product = useProductData(query);
-  return (
-    <Layout>
-      {product ? (
-        <div className={styles.container}>
-          <Head>
-            <title>{product.result.fields.Name}</title>
-          </Head>
-          <div className={styles.img_container}>
-            <Image
-              alt={product?.result.fields.Name}
-              layout="fill"
-              className={styles.img}
-              src={product?.result.fields.Images[0].url}
-            />
-          </div>
-          <div className={styles.product_data_container}>
-            <div className={styles.text_container}>
-              <MainSubtitle text={product?.result.fields.Name} color="black" />
-              <MainSubtitle
-                color="black"
-                text={
-                  product?.result.fields
-                    ? "$" + product.result.fields["Unit cost"]
-                    : ""
-                }
-              />
-            </div>
-            <div
-              className={styles.button_container}
-              onClick={() => {
-                const logged = isUserLogged();
-                if (logged) {
-                  router.push("/checkout/" + query);
-                } else {
-                  window.alert(
-                    "Debes iniciar sesión para poder comprar productos"
-                  );
-                }
-              }}
-            >
-              <PurchaseButton text="Comprar" color="black" />
-            </div>
-            <div className={styles.large_text__container}>
-              <MediumLargeText
-                text={product?.result.fields.Description}
-                color="black"
-              />
-            </div>
-          </div>
-        </div>
-      ) : (
-        ""
-      )}
-    </Layout>
-  );
+  if (data && data.Images) {
+    return (
+      <Layout>
+        <Head>
+          <title>{data?.Name}</title>
+        </Head>
+        <ItemView data={data} query={query} />
+      </Layout>
+    );
+  } else {
+    return <div></div>;
+  }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const arrForMockItems = [
+    { params: { itemId: "1" } },
+    { params: { itemId: "2" } },
+    { params: { itemId: "3" } },
+  ];
+  const productsId = await getIdsForPaths();
+  const arr = productsId.products.map((id) => ({ params: { itemId: id } }));
+  const pathsArr = arr.concat(arrForMockItems);
+  return {
+    paths: pathsArr,
+    fallback: true,
+  };
+};
+export async function getStaticProps(ctx) {
+  const productData = await getProductData(ctx.params.itemId);
+  return { props: { data: productData } };
 }

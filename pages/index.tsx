@@ -1,72 +1,43 @@
 import styles from "./home.module.css";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Layout } from "components/layout";
 import { MainTitle, MainSubtitle } from "ui/text";
 import { HomePageSearchForm } from "components/searchForms";
 import { getFavourites, getUserFavourites } from "api";
-import { Card } from "components/card";
-import { isUserLogged } from "lib";
+import { Card, StaticCard } from "ui/card";
+import { FeaturedProducts } from "components/featuredProducts";
+
+/* const sillaGamerImg = require("/public/static/images/silla-gamer.jpg");
+const sillonBlanco = require("/public/static/images/silla-blanca.png");
+const sillonMulticolor = require("/public/static/images/sillon-clave.png"); */
 
 export default function Home() {
-  const router = useRouter();
+  /* const router = useRouter();
   const [products, setProducts] = useState() as any;
-  const [logged, setLogged] = useState(false);
-  async function pullFavourites() {
+
+  async function pullFavourites(): Promise<void> {
     const favourites = await getFavourites();
     const results = await getUserFavourites(favourites);
     if (results) {
       setProducts(results);
     }
   }
-
-  useEffect(() => {
-    pullFavourites();
-    const logged = isUserLogged();
-    setLogged(logged);
-  }, []);
-
-  const featuredProdStyle = {
-    display: logged ? "" : "none",
-  };
+  pullFavourites(); */
 
   return (
     <Layout>
+      <Head>
+        <title>Home</title>
+      </Head>
       <div className={styles.home_container}>
-        <Head>
-          <title>Home</title>
-        </Head>
         <MainTitle text="Mi primer e-commerce" className={styles.title} />
         <div className={styles.form}>
           <HomePageSearchForm />
         </div>
-        <div
-          className={styles.home_featured__products}
-          style={featuredProdStyle}
-        >
-          <MainSubtitle
-            text="Productos Destacados"
-            className={styles.subtitle}
-            color="white"
-          />
-          <div className={styles.cards_container}>
-            {products?.map((product) => {
-              const fields = product.result.fields;
-              return (
-                <Card
-                  key={product.result.objectID}
-                  title={fields.Name}
-                  price={fields["Unit cost"]}
-                  src={fields.Images.map((i) => i.url)}
-                  onClick={() => {
-                    return router.push("/item/" + product.result.objectID);
-                  }}
-                />
-              );
-            })}
-          </div>
-        </div>
+
+        <FeaturedProducts />
       </div>
     </Layout>
   );

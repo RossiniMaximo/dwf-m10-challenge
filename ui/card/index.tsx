@@ -6,7 +6,7 @@ type CardProps = {
   src: string;
   title: string;
   price: string;
-  onClick: () => {};
+  onClick?: () => {};
 };
 
 export function Card(props: CardProps) {
@@ -17,6 +17,24 @@ export function Card(props: CardProps) {
           className={styles.img}
           alt={props.title}
           src={props.src[0]}
+          layout="fill"
+        />
+      </div>
+      <div className={styles.text_container}>
+        <BoldLargeText text={props.title} />
+        <BoldLargeText text={"$" + props.price} />
+      </div>
+    </div>
+  );
+}
+export function StaticCard(props: CardProps) {
+  return (
+    <div onClick={props.onClick} className={styles.main_container}>
+      <div className={styles.img_container}>
+        <Image
+          className={styles.img}
+          alt={props.title}
+          src={props.src}
           layout="fill"
         />
       </div>

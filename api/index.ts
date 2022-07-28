@@ -25,20 +25,6 @@ export async function sendCode(email: string, code: number) {
   }
 }
 
-export async function getSearchProducts(
-  query: string,
-  limit: string,
-  offset: number
-) {
-  const res = await fetchAPI(
-    "/products/search?query=" + query + "&limit=" + limit + "&offset=" + offset,
-    {
-      method: "GET",
-    }
-  );
-  return res;
-}
-
 export async function createOrder(productId: string, purchaseData) {
   const res = await fetchAPI("/order?productId=" + productId, {
     method: "POST",
@@ -92,4 +78,20 @@ export async function getFavourites() {
     const res = await fetchAPI("/user/favourites", {});
     return res;
   }
+}
+
+export async function getIdsForPaths() {
+  const res = await fetch("http:localhost:8080/api/products/all", {
+    method: "get",
+  });
+  const json = await res.json();
+  return json;
+}
+export async function getProductData(itemId) {
+  const res = await fetch(
+    "http://localhost:8080/api/products?productId=" + itemId
+  );
+  const json = await res.json();
+
+  return json.result.fields;
 }
