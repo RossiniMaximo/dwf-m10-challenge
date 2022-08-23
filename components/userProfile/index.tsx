@@ -1,5 +1,4 @@
 import { setUserAddressAndPhoneNumber } from "api";
-import { TypeUserData } from "custom";
 import { setStoragedUser } from "lib";
 import { AddressContext } from "pages/_app";
 import { useContext, useState } from "react";

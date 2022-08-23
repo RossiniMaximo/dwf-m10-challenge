@@ -3,9 +3,12 @@ import { Card } from "ui/card";
 import { MediumLargeText } from "ui/text";
 import styles from "./searchProducts.module.css";
 import { useRouter } from "next/router";
+import { useProducts } from "lib/hooks";
 
-export function SearchProducts({ products, stateOffset, setStateOffset }) {
+export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
   const router = useRouter();
+  const products = useProducts(query, limit, stateOffset);
+
   return (
     <div className={styles.content_container}>
       <div className={styles.result_amount}>

@@ -10,11 +10,11 @@ export default function Search() {
   const router = useRouter();
   const query = router.query.q as string;
   const limit = Number(router.query.limit);
-  let offset = Number(router.query.offset);
-  const prods = useProducts(query, limit, stateOffset);
+  let offset = router.query.offset;
+  const offsetToNumber = Number(offset);
 
   useEffect(() => {
-    setStateOffset(offset);
+    setStateOffset(offsetToNumber);
   }, []);
 
   return (
@@ -23,7 +23,8 @@ export default function Search() {
         <title>Search</title>
       </Head>
       <SearchProducts
-        products={prods}
+        query={query}
+        limit={limit}
         stateOffset={stateOffset}
         setStateOffset={setStateOffset}
       />
