@@ -4,9 +4,12 @@ import { useState, useEffect } from "react";
 import { TypeUserData } from "custom";
 import { UserProfile } from "components/userProfile";
 import Head from "next/head";
+import { useMe } from "lib/hooks";
 
 export default function Profile() {
   const [user, setUser] = useState({} as TypeUserData);
+  const me = useMe();
+  console.log("Me :", me);
 
   useEffect(() => {
     const userData = getStoragedUser();
@@ -18,7 +21,7 @@ export default function Profile() {
       <Head>
         <title>Profile</title>
       </Head>
-      <UserProfile user={user} />
+      <UserProfile user={me} />
     </Layout>
   );
 }

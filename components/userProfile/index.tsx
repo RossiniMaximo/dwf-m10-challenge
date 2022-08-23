@@ -17,9 +17,8 @@ export function UserProfile({ user }) {
     const phoneNumber = e.target.phone_number.value;
     const res = await setUserAddressAndPhoneNumber(address, phoneNumber);
     setAddy(address);
-    console.log("addyContext addy after set", addy);
 
-    setStoragedUser({ ...user, shipment_address: address });
+    setStoragedUser({ ...user, shipment_address: address, phone: phoneNumber });
     if (res) {
       setUpdated(true);
     }
@@ -49,7 +48,7 @@ export function UserProfile({ user }) {
         <TextField
           text="Teléfono"
           type="text"
-          placeholder={user?.phone ? user.phone : "1123456020"}
+          placeholder={user?.phone_number}
           name="phone_number"
         />
         <div>

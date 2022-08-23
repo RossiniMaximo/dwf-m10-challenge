@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 export function SearchProducts({ products, stateOffset, setStateOffset }) {
   const router = useRouter();
   return (
-    <div>
+    <div className={styles.content_container}>
       <div className={styles.result_amount}>
         <MediumLargeText
           text={
@@ -39,35 +39,38 @@ export function SearchProducts({ products, stateOffset, setStateOffset }) {
           })}
         </div>
         <div className={styles.page_navigation}>
-          <p
-            onClick={() => {
-              setStateOffset(stateOffset - 1);
-            }}
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              marginTop: 0,
-              cursor: "pointer",
-            }}
-          >
-            {"<"} volver
-          </p>
-          {products?.results.length === 1 ? (
+          {products?.results.length <= 1 ? (
             ""
           ) : (
-            <p
-              onClick={() => {
-                setStateOffset(stateOffset + 1);
-              }}
-              style={{
-                textAlign: "center",
-                fontSize: "20px",
-                marginTop: 0,
-                cursor: "pointer",
-              }}
-            >
-              ver más {">"}
-            </p>
+            <div className={styles.arrows_container}>
+              <p
+                onClick={() => {
+                  setStateOffset(stateOffset - 1);
+                }}
+                style={{
+                  textAlign: "center",
+                  fontSize: "20px",
+                  marginTop: 0,
+                  cursor: "pointer",
+                }}
+              >
+                {"<"} volver
+              </p>
+
+              <p
+                onClick={() => {
+                  setStateOffset(stateOffset + 1);
+                }}
+                style={{
+                  textAlign: "center",
+                  fontSize: "20px",
+                  marginTop: 0,
+                  cursor: "pointer",
+                }}
+              >
+                ver más {">"}
+              </p>
+            </div>
           )}
         </div>
       </div>

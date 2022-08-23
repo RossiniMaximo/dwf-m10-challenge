@@ -23,7 +23,7 @@ export function ProductPurchaseSettings({ product, productId, address }) {
           />
           <MainLargeText
             text={
-              "Precio del producto : $" + product?.result.fields["Unit cost"]
+              "Precio del producto : $" + product?.result.fields["Unit Cost"]
             }
             color="white"
           />
@@ -41,7 +41,12 @@ export function ProductPurchaseSettings({ product, productId, address }) {
           </select>
         </div>
         <div className={styles.text_container}>
-          <p>Materiales : {product?.result.fields.Materials.join(" , ")}</p>
+          <p>
+            Materiales :{" "}
+            {product?.result.fields.Materials
+              ? product?.result.fields.Materials.join(" , ")
+              : "Cuero y algodón"}
+          </p>
           <p>Stock : {JSON.stringify(product?.result.fields["In stock"])}</p>
           <p>Tamaño : {product?.result.fields["Size (WxLxH)"]}</p>
           <div className={styles.address_container}>

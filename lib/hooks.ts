@@ -19,3 +19,8 @@ export function useProducts(query: string, limit: number, offset: number) {
   );
   return data;
 }
+
+export function useMe() {
+  const { data } = useSWR("/user", fetchAPI);
+  return data;
+}

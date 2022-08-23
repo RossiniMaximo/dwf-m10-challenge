@@ -1,3 +1,6 @@
+.content_container {
+  min-height: 500px;
+}
 .container {
   padding: 40px;
 }
@@ -23,5 +26,9 @@
 .page_navigation {
   display: flex;
   justify-content: center;
+  gap: 100px;
+}
+.arrows_container {
+  display: flex;
   gap: 100px;
 }

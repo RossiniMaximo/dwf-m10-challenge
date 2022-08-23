@@ -1,4 +1,4 @@
-import { fetchAPI, getStoragedToken, setStoragedToken } from "lib";
+import { fetchAPI, setStoragedToken } from "lib";
 
 export async function sendCodeByEmail(email: string, fullname: string) {
   const res = await fetchAPI("/auth", {
