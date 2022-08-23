@@ -42,7 +42,7 @@ export function SearchPageSearchForm() {
 
   return router.pathname.includes("/search") ? (
     <form onSubmit={handleSubmit} className={styles.search_form}>
-      <TextField type="search" placeholder="Mate.." name="search" />
+      <TextField type="search" placeholder="Chair.." name="search" />
       <div className={styles.search_button__container}>
         <SearchButton text="Buscar" color="black" />
       </div>
