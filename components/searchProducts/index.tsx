@@ -4,10 +4,15 @@ import { MediumLargeText } from "ui/text";
 import styles from "./searchProducts.module.css";
 import { useRouter } from "next/router";
 import { useProducts } from "lib/hooks";
+import { useEffect, useState } from "react";
 
 export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
   const router = useRouter();
   const products = useProducts(query, limit, stateOffset);
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+    setResults(products);
+  });
 
   return (
     <div className={styles.content_container}>
@@ -48,7 +53,7 @@ export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
             <div className={styles.arrows_container}>
               <p
                 onClick={() => {
-                  setStateOffset(stateOffset - 1);
+                  setStateOffset((stateOffset = -1));
                 }}
                 style={{
                   textAlign: "center",
@@ -62,7 +67,7 @@ export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
 
               <p
                 onClick={() => {
-                  setStateOffset(stateOffset + 1);
+                  setStateOffset((stateOffset = +1));
                 }}
                 style={{
                   textAlign: "center",
