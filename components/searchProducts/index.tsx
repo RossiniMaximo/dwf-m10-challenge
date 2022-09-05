@@ -5,14 +5,17 @@ import styles from "./searchProducts.module.css";
 import { useRouter } from "next/router";
 import { useProducts } from "lib/hooks";
 import { useEffect, useState } from "react";
+import { LogInButton } from "ui/button";
 
-export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
-  const router = useRouter();
-  const products = useProducts(query, limit, stateOffset);
-  const [results, setResults] = useState([]);
+export function SearchProducts({ query, offset }) {
+  const [stateOffset, setStateOffset] = useState(0);
   useEffect(() => {
-    setResults(products);
-  });
+    setStateOffset(offset);
+  }, []);
+  console.log(stateOffset);
+
+  const router = useRouter();
+  const products = useProducts(query, 3, stateOffset);
 
   return (
     <div className={styles.content_container}>
@@ -48,12 +51,24 @@ export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
         </div>
         <div className={styles.page_navigation}>
           {products?.results.length <= 1 ? (
-            ""
+            <p
+              onClick={() => {
+                setStateOffset((offset -= 1));
+              }}
+              style={{
+                textAlign: "center",
+                fontSize: "20px",
+                marginTop: 0,
+                cursor: "pointer",
+              }}
+            >
+              {"<"} volver
+            </p>
           ) : (
             <div className={styles.arrows_container}>
               <p
                 onClick={() => {
-                  setStateOffset((stateOffset = -1));
+                  setStateOffset(stateOffset - 1);
                 }}
                 style={{
                   textAlign: "center",
@@ -67,7 +82,7 @@ export function SearchProducts({ stateOffset, setStateOffset, query, limit }) {
 
               <p
                 onClick={() => {
-                  setStateOffset((stateOffset = +1));
+                  setStateOffset(stateOffset + 1);
                 }}
                 style={{
                   textAlign: "center",
