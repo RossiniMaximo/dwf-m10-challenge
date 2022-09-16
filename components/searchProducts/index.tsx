@@ -12,7 +12,6 @@ export function SearchProducts({ query, offset }) {
   useEffect(() => {
     setStateOffset(offset);
   }, []);
-  console.log(stateOffset);
 
   const router = useRouter();
   const products = useProducts(query, 3, stateOffset);
@@ -49,23 +48,9 @@ export function SearchProducts({ query, offset }) {
             );
           })}
         </div>
-        <div className={styles.page_navigation}>
-          {products?.results.length <= 1 ? (
-            <p
-              onClick={() => {
-                setStateOffset((offset -= 1));
-              }}
-              style={{
-                textAlign: "center",
-                fontSize: "20px",
-                marginTop: 0,
-                cursor: "pointer",
-              }}
-            >
-              {"<"} volver
-            </p>
-          ) : (
-            <div className={styles.arrows_container}>
+        {products?.results.length > 0 ? (
+          <div className={styles.page_navigation}>
+            {products?.results.length <= 1 ? (
               <p
                 onClick={() => {
                   setStateOffset(stateOffset - 1);
@@ -79,23 +64,41 @@ export function SearchProducts({ query, offset }) {
               >
                 {"<"} volver
               </p>
+            ) : (
+              <div className={styles.arrows_container}>
+                <p
+                  onClick={() => {
+                    setStateOffset(stateOffset - 1);
+                  }}
+                  style={{
+                    textAlign: "center",
+                    fontSize: "20px",
+                    marginTop: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  {"<"} volver
+                </p>
 
-              <p
-                onClick={() => {
-                  setStateOffset(stateOffset + 1);
-                }}
-                style={{
-                  textAlign: "center",
-                  fontSize: "20px",
-                  marginTop: 0,
-                  cursor: "pointer",
-                }}
-              >
-                ver más {">"}
-              </p>
-            </div>
-          )}
-        </div>
+                <p
+                  onClick={() => {
+                    setStateOffset(stateOffset + 1);
+                  }}
+                  style={{
+                    textAlign: "center",
+                    fontSize: "20px",
+                    marginTop: 0,
+                    cursor: "pointer",
+                  }}
+                >
+                  ver más {">"}
+                </p>
+              </div>
+            )}
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
