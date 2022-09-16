@@ -23,7 +23,7 @@ export function ProductPurchaseSettings({ product, productId, address }) {
           />
           <MainLargeText
             text={
-              "Precio del producto : $" + product?.result.fields["Unit Cost"]
+              "Precio del producto : $" + product?.result.fields["Unit cost"]
             }
             color="white"
           />
