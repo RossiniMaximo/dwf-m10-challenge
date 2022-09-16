@@ -17,10 +17,10 @@ export function ItemView({ data, query }) {
   } else if (data.Name == "Sillon multicolor") {
     img = sillonMulticolor;
   }
-  /* console.log("data :", data); */
 
   const router = useRouter();
-  const price = data ? "$" + data["Unit Cost"] : "";
+
+  const price = data ? "$" + data["Unit cost"] : "";
   return (
     <div className={styles.container}>
       <div className={styles.img_container}>
