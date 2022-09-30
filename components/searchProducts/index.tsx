@@ -9,9 +9,6 @@ import { LogInButton } from "ui/button";
 
 export function SearchProducts({ query, offset }) {
   const [stateOffset, setStateOffset] = useState(0);
-  useEffect(() => {
-    setStateOffset(offset);
-  }, []);
 
   const router = useRouter();
   const products = useProducts(query, 3, stateOffset);
@@ -53,7 +50,7 @@ export function SearchProducts({ query, offset }) {
             {products?.results.length <= 1 ? (
               <p
                 onClick={() => {
-                  setStateOffset(stateOffset - 1);
+                  setStateOffset((currentState) => currentState - 1);
                 }}
                 style={{
                   textAlign: "center",
@@ -68,7 +65,7 @@ export function SearchProducts({ query, offset }) {
               <div className={styles.arrows_container}>
                 <p
                   onClick={() => {
-                    setStateOffset(stateOffset - 1);
+                    setStateOffset((currentState) => currentState - 1);
                   }}
                   style={{
                     textAlign: "center",
@@ -82,7 +79,8 @@ export function SearchProducts({ query, offset }) {
 
                 <p
                   onClick={() => {
-                    setStateOffset(stateOffset + 1);
+                    setStateOffset((currentState) => currentState + 1);
+                    console.log("click");
                   }}
                   style={{
                     textAlign: "center",
